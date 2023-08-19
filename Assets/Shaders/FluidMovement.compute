@@ -1,0 +1,53 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CalculateVelocities
+ 
+
+struct Boid
+{
+    float3 position;
+    float3 velocity; 
+};
+
+//variables
+RWStructuredBuffer<Boid> Result; 
+uniform float Time;
+uniform int N;
+
+[numthreads(64, 1, 1)]
+void CalculateVelocities(uint3 id : SV_DispatchThreadID)
+{
+    Boid boid = Result[id.x];
+    //
+    //generate 2 orthogonal vectors
+   // float3 baseDir = normalize(rand1dTo3d(id.x) - 0.5) * (rand1dTo1d(id.x) * 0.9 + 0.1);
+   // float3 orthogonal = normalize(cross(baseDir, rand1dTo3d(id.x + 7.1393) - 0.5)) * (rand1dTo1d(id.x + 3.7443) * 0.9 + 0.1);
+    //scale the time and give it a random offset
+  //  float scaledTime = Time * 2 + rand1dTo1d(id.x) * 712.131234;
+    //calculate a vector based on vectors
+   // float3 dir = baseDir * sin(scaledTime) + orthogonal * cos(scaledTime);
+    //
+    
+    float3 centerDiff = float3(0, 2, 1) - Result[id.x].position;
+    //
+    Result[id.x] .velocity += centerDiff * Time * 0.4f;
+    //
+    for (int i = 0; i < N; i++)                 // Not being unrolled
+    {
+        if (i != id.x)
+        {
+            float3 diff = normalize(Result[i].position - Result[id.x].position);
+            float dist = distance(Result[i].position, Result[id.x].position);
+            float attraction = clamp(1 - dist / 3, 0, 1) * 2;
+            float repulsion = clamp( 1.2f - dist * dist, 0, 1.2f) * 32;
+            Result[id.x] .velocity += (attraction - repulsion) * Time * diff;
+          //  Result[i] = f(fnh, h, theta);
+        }
+    }
+    Result[id.x].velocity *= (1 - Time * 1);
+    Result[id.x].velocity = lerp(Result[id.x].velocity, normalize(Result[id.x].velocity) * 8, Time * 14);
+    
+    Result[id.x].position += Result[id.x].velocity * Time;
+    Result[id.x].position.y = clamp(Result[id.x].position.y, 0.1f, 2);
+
+}
+ 
