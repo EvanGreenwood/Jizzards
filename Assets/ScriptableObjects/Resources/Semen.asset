@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de51ff6c3dec52428e9e6ce94405f6d, type: 3}
+  m_Name: Semen
+  m_EditorClassIdentifier: 
+  _guid: c3845dfc8b920b14c9bfcde2eddca831
+  color: {r: 0.8207547, g: 0.79156005, b: 0.6078231, a: 1}
+  repulsionRange: 1
