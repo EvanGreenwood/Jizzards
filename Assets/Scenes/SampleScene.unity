@@ -19170,9 +19170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f1209900e838f4dad66273693287a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SphereAmount: 1200
+  startAmount: 10
+  maxAmount: 400
+  increment: 10
   Shader: {fileID: 7200000, guid: d1a48f1f9fa9bf04982c539930135ae9, type: 3}
-  Prefab: {fileID: 2405644532073838549, guid: 9f05f0272ac9b8c49bc65981b1bd90ae, type: 3}
+  Prefab: {fileID: 2848743008541455913, guid: 7e881a65efefdca4f989aff749c57b71, type: 3}
 --- !u!4 &607938460
 Transform:
   m_ObjectHideFlags: 0
@@ -28364,7 +28366,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

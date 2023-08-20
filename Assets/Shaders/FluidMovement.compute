@@ -6,11 +6,14 @@ struct Boid
 {
     float3 position;
     float3 velocity; 
+    float variance;
+     int status;
 };
 
 //variables
 RWStructuredBuffer<Boid> Result; 
 uniform float Time;
+uniform float3 Center;
 uniform int N;
 
 [numthreads(64, 1, 1)]
@@ -27,27 +30,31 @@ void CalculateVelocities(uint3 id : SV_DispatchThreadID)
    // float3 dir = baseDir * sin(scaledTime) + orthogonal * cos(scaledTime);
     //
     
-    float3 centerDiff = float3(0, 2, 1) - Result[id.x].position;
+    float3 centerDiff = Center - Result[id.x].position;
     //
-    Result[id.x] .velocity += centerDiff * Time * 0.4f;
+    Result[id.x].velocity += normalize(centerDiff) * Time * 12;
     //
-    for (int i = 0; i < N; i++)                 // Not being unrolled
-    {
-        if (i != id.x)
+      if (boid.status > 0)
+     {
+        for (int i = 0; i < N; i++)                 // Not being unrolled
         {
-            float3 diff = normalize(Result[i].position - Result[id.x].position);
-            float dist = distance(Result[i].position, Result[id.x].position);
-            float attraction = clamp(1 - dist / 3, 0, 1) * 2;
-            float repulsion = clamp( 1.2f - dist * dist, 0, 1.2f) * 32;
-            Result[id.x] .velocity += (attraction - repulsion) * Time * diff;
+            if (i != id.x)
+            {
+                float3 diff = normalize(Result[i].position - Result[id.x].position);
+                float dist = distance(Result[i].position, Result[id.x].position);
+                float attraction = clamp(1 - dist / 7, 0, 1) * 0.4f;
+                float repulsion = clamp(1 - ((dist / 1.4f)), 0, 1) * 32;
+                Result[id.x].velocity += (attraction - repulsion) * Time * diff;
           //  Result[i] = f(fnh, h, theta);
+            }
         }
-    }
-    Result[id.x].velocity *= (1 - Time * 1);
-    Result[id.x].velocity = lerp(Result[id.x].velocity, normalize(Result[id.x].velocity) * 8, Time * 14);
+     }
+    Result[id.x].velocity *= (1 - Time * 0.8f);
+    Result[id.x].velocity = lerp(Result[id.x].velocity, normalize(Result[id.x].velocity) * 12 * boid.variance, Time * 8.9f * boid.variance);
     
     Result[id.x].position += Result[id.x].velocity * Time;
-    Result[id.x].position.y = clamp(Result[id.x].position.y, 0.1f, 2);
+    Result[id.x].position.y = 0;
+    Result[id.x].velocity.y = 0;
 
 }
  

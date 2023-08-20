@@ -66,7 +66,7 @@ public class FluidManager : SingletonBehaviour<FluidManager>
     {
         float t = Time.deltaTime;
         //
-        Debug.Log("Update fluids " + fluids.Count);
+      //  Debug.Log("Update fluids " + fluids.Count);
         //
         for (int i = fluids.Count - 1; i >= 0; i--)
         {
