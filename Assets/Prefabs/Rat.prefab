@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6570875862855180753}
   - component: {fileID: 4654608166101222276}
-  m_Layer: 0
+  - component: {fileID: 901561093383690832}
+  m_Layer: 8
   m_Name: Rat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,8 +48,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482c86da381828c4e8b28973360a8c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fluidType: {fileID: 11400000, guid: d4e36a0890edb6f4c8074d33bdd72f56, type: 2}
+  boidIndex: -1
   _rotationSpeed: 80
+--- !u!135 &901561093383690832
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848743008541455913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &4121308048045343700
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +82,7 @@ GameObject:
   - component: {fileID: 4466508695188444305}
   - component: {fileID: 7767209446006475746}
   - component: {fileID: 3829331638299228509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +165,7 @@ GameObject:
   - component: {fileID: 7143950602948785351}
   - component: {fileID: 819644352523312938}
   - component: {fileID: 3129294387550516534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +248,7 @@ GameObject:
   - component: {fileID: 8035495115260752902}
   - component: {fileID: 5729589057752428371}
   - component: {fileID: 1142031776809757807}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -33,21 +33,21 @@ void CalculateVelocities(uint3 id : SV_DispatchThreadID)
      {
         for (int i = 0; i < N; i++)                 // Not being unrolled
         {
-            if (i != id.x)
+            if (i != id.x && Result[i].status >0)
             {
                 float3 diff = normalize(Result[i].position - Result[id.x].position);
                 float dist = distance(Result[i].position, Result[id.x].position);
-                float attraction = clamp(1 - dist / 1.1f, 0, 1) * 12.4f;
-                float repulsion = clamp(1 - ((dist / 0.5f)), 0, 1) * 122;
+                float attraction = clamp(1 - dist / 7, 0, 1) * 0.4f;
+                float repulsion = clamp(1 - ((dist / 1.4f)), 0, 1) * 32;
                 Result[id.x].velocity += (attraction - repulsion) * Time * diff;
           //  Result[i] = f(fnh, h, theta);
             }
         }
      }
-    Result[id.x].velocity *= (1 - Time * 12.8f);
+    Result[id.x].velocity *= (1 - Time * 0.8f);
     if (velocityTargetting > 0)
     {
-        Result[id.x].velocity = lerp(Result[id.x].velocity, normalize(Result[id.x].velocity) * 12 * boid.variance, Time * velocityTargetting * boid.variance);
+        Result[id.x].velocity = lerp(Result[id.x].velocity, normalize(Result[id.x].velocity) * 7 * boid.variance, Time * velocityTargetting * boid.variance);
     }
     
     Result[id.x].position += Result[id.x].velocity * Time;
