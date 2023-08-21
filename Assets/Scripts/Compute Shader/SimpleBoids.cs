@@ -80,7 +80,7 @@ public class BasicComputeSpheres : MonoBehaviour
     {
         if (press1ToSpawn && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SpawnBoids(20, new Vector3((Random.Range(0, 2) * 2 - 1) * 30, 0, (Random.Range(0, 2) * 2 - 1) * 20));
+            SpawnBoids(increment, new Vector3((Random.Range(0, 2) * 2 - 1) * 30, 0, (Random.Range(0, 2) * 2 - 1) * 20));
         }
         //
         if (_spawnings.Count  > 0)

@@ -37,7 +37,7 @@ void CalculateVelocities(uint3 id : SV_DispatchThreadID)
             {
                 float3 diff = normalize(Result[i].position - Result[id.x].position);
                 float dist = distance(Result[i].position, Result[id.x].position);
-                float attraction = clamp(1 - dist / 7, 0, 1) * 0.4f;
+                float attraction = clamp(1 - dist / 7, 0, 1) * 0.2f;
                 float repulsion = clamp(1 - ((dist / 1.4f)), 0, 1) * 32;
                 Result[id.x].velocity += (attraction - repulsion) * Time * diff;
           //  Result[i] = f(fnh, h, theta);

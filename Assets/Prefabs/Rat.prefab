@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482c86da381828c4e8b28973360a8c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodController: {fileID: 0}
+  boidController: {fileID: 0}
   boidIndex: -1
-  _rotationSpeed: 80
+  _rotationSpeed: 40
+  _movementRate: 0.03
 --- !u!135 &901561093383690832
 SphereCollider:
   m_ObjectHideFlags: 0

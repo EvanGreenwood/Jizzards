@@ -17138,8 +17138,8 @@ MonoBehaviour:
   bloodController: {fileID: 539239100}
   press1ToSpawn: 0
   startAmount: 0
-  maxAmount: 400
-  increment: 10
+  maxAmount: 2000
+  increment: 50
   centerAttraction: 0
   velocityTargetting: 0
   Shader: {fileID: 7200000, guid: d1a48f1f9fa9bf04982c539930135ae9, type: 3}
@@ -19436,8 +19436,8 @@ MonoBehaviour:
   bloodController: {fileID: 539239100}
   press1ToSpawn: 1
   startAmount: 5
-  maxAmount: 400
-  increment: 10
+  maxAmount: 8000
+  increment: 60
   centerAttraction: 9
   velocityTargetting: 9.6
   Shader: {fileID: 7200000, guid: 829e8e28d41fc9c4183755ca57e647e5, type: 3}
